@@ -20,7 +20,21 @@ export default createStore({
       });
     },
   },
-  mutations: {},
+  mutations: {
+    addUser(state, user: User) {
+      const nameNoSpace = user.name.replace(" ", "");
+      const randomString = Math.random().toString(36);
+      user.id = randomString + nameNoSpace;
+      user.deactivated = false;
+      state.users.push(user);
+    },
+    activateUser(state, user: User) {
+      user.deactivated = false;
+    },
+    deactivateUser(state, user: User) {
+      user.deactivated = true;
+    },
+  },
   actions: {},
   modules: {},
 });

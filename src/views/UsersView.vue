@@ -40,7 +40,6 @@ import { User } from "@/models/User";
 
 export default {
   name: "UsersView",
-  props: ["users"],
   data() {
     return {
       user: {} as User,
@@ -48,17 +47,13 @@ export default {
   },
   methods: {
     addUser() {
-      const nameNoSpace = this.user.name.replace(" ", "");
-      const randomString = Math.random().toString(36);
-      this.user.id = randomString + nameNoSpace;
-      this.user.deactivated = false;
-      this.$emit("userAdd", this.user);
+      this.$store.commit("addUser", this.user);
     },
     activateUser(user: User) {
-      user.deactivated = false;
+      this.$store.commit("activateUser", user);
     },
     deactivateUser(user: User) {
-      user.deactivated = true;
+      this.$store.commit("deactivateUser", user);
     },
   },
 };

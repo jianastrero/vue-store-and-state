@@ -3,7 +3,7 @@
     <router-link to="/">Users</router-link> |
     <router-link to="/roles">Roles</router-link>
   </nav>
-  <router-view @user-add="userAdd" :users="users" />
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -22,9 +22,6 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    },
-    userAdd(user: User) {
-      this.$store.state.users.push(user);
     },
   },
   mounted() {
