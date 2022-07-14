@@ -48,12 +48,12 @@ export default {
   },
   computed: {
     activatedUsers(): User[] {
-      return this.users.filter((user: User) => {
+      return this.$store.state.users.filter((user: User) => {
         return !user.deactivated;
       });
     },
     deactivatedUsers(): User[] {
-      return this.users.filter((user: User) => {
+      return this.$store.state.users.filter((user: User) => {
         return user.deactivated;
       });
     },

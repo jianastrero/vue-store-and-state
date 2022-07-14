@@ -10,12 +10,6 @@
 import { User } from "@/models/User";
 export default {
   name: "UsersView",
-  data() {
-    return {
-      users: [] as User[],
-      roles: [],
-    };
-  },
   methods: {
     async fetchUsers() {
       try {
@@ -23,13 +17,13 @@ export default {
           `https://mocki.io/v1/778f1ed9-1261-4e78-815f-60feb5925c76`
         );
         const json = await result.json();
-        this.users.push(...json);
+        this.$store.state.users.push(...json);
       } catch (e) {
         console.log(e);
       }
     },
     userAdd(user: User) {
-      this.users.push(user);
+      this.$store.state.users.push(user);
     },
   },
   mounted() {
