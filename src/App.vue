@@ -17,7 +17,8 @@ export default {
           `https://mocki.io/v1/778f1ed9-1261-4e78-815f-60feb5925c76`
         );
         const json = await result.json();
-        this.$store.state.users.push(...json);
+        this.$store.getters.users.push(...json);
+        console.log(json);
       } catch (e) {
         console.log(e);
       }

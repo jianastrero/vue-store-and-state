@@ -11,7 +11,7 @@
         <h2>Activated Users</h2>
         <div
           class="box activated"
-          v-for="user in activatedUsers"
+          v-for="user in this.$store.getters.activatedUsers"
           :key="user.id"
         >
           <span class="name">{{ user.name }}</span>
@@ -23,7 +23,7 @@
         <h2>Dectivated Users</h2>
         <div
           class="box deactivated"
-          v-for="user in deactivatedUsers"
+          v-for="user in this.$store.getters.deactivatedUsers"
           :key="user.id"
         >
           <span class="name">{{ user.name }}</span>
@@ -45,18 +45,6 @@ export default {
     return {
       user: {} as User,
     };
-  },
-  computed: {
-    activatedUsers(): User[] {
-      return this.$store.state.users.filter((user: User) => {
-        return !user.deactivated;
-      });
-    },
-    deactivatedUsers(): User[] {
-      return this.$store.state.users.filter((user: User) => {
-        return user.deactivated;
-      });
-    },
   },
   methods: {
     addUser() {
