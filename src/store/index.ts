@@ -34,7 +34,23 @@ export default createStore({
     deactivateUser(state, user: User) {
       user.deactivated = true;
     },
+    addUsers(state, user: User[]) {
+      state.users.push(...user);
+    },
   },
-  actions: {},
+  actions: {
+    async fetchUsers(context) {
+      try {
+        const result = await fetch(
+          `https://mocki.io/v1/778f1ed9-1261-4e78-815f-60feb5925c76`
+        );
+        const json = await result.json();
+        context.commit("addUsers", json);
+        console.log(json);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  },
   modules: {},
 });

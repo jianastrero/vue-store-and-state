@@ -7,25 +7,10 @@
 </template>
 
 <script lang="ts">
-import { User } from "@/models/User";
 export default {
   name: "UsersView",
-  methods: {
-    async fetchUsers() {
-      try {
-        const result = await fetch(
-          `https://mocki.io/v1/778f1ed9-1261-4e78-815f-60feb5925c76`
-        );
-        const json = await result.json();
-        this.$store.getters.users.push(...json);
-        console.log(json);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-  },
   mounted() {
-    this.fetchUsers();
+    this.$store.dispatch("fetchUsers");
   },
 };
 </script>
